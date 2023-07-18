@@ -1,8 +1,8 @@
 {
-  "name": "{{ name }}",
+  "name": "yunshang",
   "version": "1.0.0",
-  "description": "{{ description }}",
-  "author": "{{ author }}",
+  "description": "云上学堂",
+  "author": "SxxStar <15963559164@163.com>",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -13,7 +13,10 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "swiper": "^4.5.1",
+    "vue": "^2.7.14",
+    "vue-awesome-swiper": "^3.1.3"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
