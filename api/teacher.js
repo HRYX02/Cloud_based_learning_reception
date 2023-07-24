@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 export default {
-    
+
     /**
      * @description 分页讲师查询的方法
      * @param {*} page 
@@ -14,4 +14,16 @@ export default {
             method: 'post'
         })
     },
+
+    /**
+     * @description 讲师详情的方法
+     * @param {*} id 
+     * @returns 
+     */
+    getTeacherInfo(id) {
+        return request({
+            url: `/eduservice/teacherReception/getTeacherInfo/${id}`,
+            method: 'get'
+        })
+    }
 }
