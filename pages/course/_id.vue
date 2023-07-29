@@ -34,7 +34,10 @@
                                 <a class="c-fff vam" title="收藏" href="#">收藏</a>
                             </span>
                         </section>
-                        <section class="c-attr-mt">
+                        <section v-if="isBuy || Number(courseWebVo.price) === 0" class="c-attr-mt">
+                            <a @click="createOrders()" href="#" title="立即观看" class="comm-btn c-btn-3">立即观看</a>
+                        </section>
+                        <section v-else class="c-attr-mt">
                             <a @click="createOrders()" href="#" title="立即购买" class="comm-btn c-btn-3">立即购买</a>
                         </section>
                     </section>
@@ -171,16 +174,30 @@ import ordersApi from '@/api/orders'
 
 export default {
     asyncData({ params, error }) {
-        return courseApi.getCourseInfo(params.id)
-            .then(response => {
-                return {
-                    courseWebVo: response.data.data.courseWebVo,
-                    chapterVideoList: response.data.data.chapterVideoList,
-                    courseId:params.id
-                }
-            })
+        return { courseId: params.id }
+    },
+    data() {
+        return {
+            courseWebVo: {},
+            chapterVideoList: [],
+            isBuy: false,
+        }
+    },
+    created() {
+        this.initCourseInfo()
     },
     methods: {
+        /**
+         * @description 查询课程详情信息
+         */
+        initCourseInfo() {
+            courseApi.getCourseInfo(this.courseId)
+                .then(response => {
+                    this.courseWebVo = response.data.data.courseWebVo,
+                        this.chapterVideoList = response.data.data.chapterVideoList,
+                        this.isBuy = response.data.data.isBuy
+                })
+        },
         /**
          * @description 生成订单
          */
