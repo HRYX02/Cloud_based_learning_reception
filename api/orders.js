@@ -25,4 +25,28 @@ export default {
             method: 'get'
         })
     },
+
+    /**
+     * @description 生成二维码的方法
+     * @param {*} orderNo 
+     * @returns 
+     */
+    createNatvie(orderNo) {
+        return request({
+            url: '/orderservice/paylog/createNative/' + orderNo,
+            method: 'get'
+        })
+    },
+
+    /**
+     * @description 查询订单状态的方法
+     * @param {*} orderNo 
+     * @returns 
+     */
+    queryPayStatus(orderNo) {
+        return request({
+            url: '/orderservice/paylog/queryPayStatus/' + orderNo,
+            method: 'get'
+        })
+    }
 }
